@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myhomework.api.ApiClient;
@@ -39,13 +40,13 @@ public class DetailActivity extends AppCompatActivity {
             Call<UserDataDetail> call = apiInterface.getUser(mUserName);
             call.enqueue(new Callback<UserDataDetail>() {
                 @Override
-                public void onResponse(Call<UserDataDetail> call, Response<UserDataDetail> response) {
+                public void onResponse(@NonNull Call<UserDataDetail> call, @NonNull Response<UserDataDetail> response) {
                     mUserData = (UserDataDetail) response.body();
                     setView();
                 }
 
                 @Override
-                public void onFailure(Call<UserDataDetail> call, Throwable t) {
+                public void onFailure(@NonNull Call<UserDataDetail> call, @NonNull Throwable t) {
                     Log.d("Yo", "Error!");
                 }
             });

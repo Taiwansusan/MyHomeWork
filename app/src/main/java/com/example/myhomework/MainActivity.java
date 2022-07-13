@@ -26,7 +26,6 @@ import retrofit2.Response;
  */
 public class MainActivity extends AppCompatActivity implements ItemListener {
 
-    private UserAdapter userAdapter;
     private RecyclerView recyclerView;
     private ArrayList<UserData> mUserDataList;
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ItemListener {
     }
 
     private void setRecyclerView(ArrayList<UserData> list) {
-        userAdapter = new UserAdapter(this,list,this);
+        UserAdapter userAdapter = new UserAdapter(this, list, this);
         recyclerView.setAdapter(userAdapter);
     }
 
