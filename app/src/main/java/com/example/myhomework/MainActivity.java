@@ -21,6 +21,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * 人員列表頁
+ */
 public class MainActivity extends AppCompatActivity implements ItemListener {
 
     private UserAdapter userAdapter;
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ItemListener {
 
             @Override
             public void onFailure(Call<List<UserData>> call, Throwable t) {
-                Log.d("Yo", "Errror!");
+                Log.d("Yo", "Error!");
             }
         });
     }
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ItemListener {
     public void ItemListener(int pos) {
         Intent intent = new Intent();
         intent.setClass(this,DetailActivity.class);
-        intent.putExtra("username",mUserDataList.get(pos).getLogin());
+        intent.putExtra("userName",mUserDataList.get(pos).getLogin());
         startActivity(intent);
     }
 }

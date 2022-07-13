@@ -19,6 +19,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * 人員詳細資料頁
+ */
 public class DetailActivity extends AppCompatActivity {
 
     private UserDataDetail mUserData;
@@ -30,8 +33,8 @@ public class DetailActivity extends AppCompatActivity {
         if (getActionBar() != null)
             getActionBar().hide();
 
-        if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getString("username") != null) {
-            String mUserName = getIntent().getExtras().getString("username");
+        if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().getString("userName") != null) {
+            String mUserName = getIntent().getExtras().getString("userName");
             ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
             Call<UserDataDetail> call = apiInterface.getUser(mUserName);
             call.enqueue(new Callback<UserDataDetail>() {
@@ -43,7 +46,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<UserDataDetail> call, Throwable t) {
-                    Log.d("Yo", "Errror!");
+                    Log.d("Yo", "Error!");
                 }
             });
         }
@@ -69,9 +72,8 @@ public class DetailActivity extends AppCompatActivity {
         userName.setText(mUserData.getName());
         userBio.setText(mUserData.getBio());
         userLogin.setText(mUserData.getLogin());
-        if (mUserData.isSite_admin()) {
-            userAdmin.setVisibility(View.VISIBLE);
-        }
+        userAdmin.setText(mUserData.getType());
+
         userLocation.setText(mUserData.getLocation());
         userBlog.setText(mUserData.getBlog());
         userBlog.setOnClickListener(new View.OnClickListener() {

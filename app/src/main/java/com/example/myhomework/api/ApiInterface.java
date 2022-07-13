@@ -13,5 +13,5 @@ public interface ApiInterface {
     @GET("users")
     Call<List<UserData>> getAllUser();
     @GET("users/{username}")
-    Call<UserDataDetail> getUser(@Path("username") String username);
+    Call<UserDataDetail> getUser(@Path("username") String userName);
 }
