@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
             call.enqueue(new Callback<UserDataDetail>() {
                 @Override
                 public void onResponse(@NonNull Call<UserDataDetail> call, @NonNull Response<UserDataDetail> response) {
-                    mUserData = (UserDataDetail) response.body();
+                    mUserData = response.body();
                     setView();
                 }
 
@@ -63,12 +62,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView userLocation = findViewById(R.id.user_location);
         TextView userBlog = findViewById(R.id.user_blog);
 
-        imgClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        imgClose.setOnClickListener(v -> finish());
         userFace.setImage(mUserData.getAvatar_url(), LogoView.CIRCLEIMAGE);
         userName.setText(mUserData.getName());
         userBio.setText(mUserData.getBio());
@@ -77,14 +71,11 @@ public class DetailActivity extends AppCompatActivity {
 
         userLocation.setText(mUserData.getLocation());
         userBlog.setText(mUserData.getBlog());
-        userBlog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(mUserData.getBlog()));
-                startActivity(intent);
-            }
+        userBlog.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(mUserData.getBlog()));
+            startActivity(intent);
         });
     }
 }
